@@ -1,53 +1,17 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { LayoutDashboard, Boxes, ArrowDownToLine, ArrowUpFromLine, ShoppingCart, ClipboardCheck, FileBarChart2, Settings, Menu, X, PackageOpen } from "lucide-react";
+import { House, Boxes, ArrowDownToLine, ArrowUpFromLine, ShoppingCart, ClipboardCheck, FileBarChart2, Settings, Menu, X, LogOut } from "lucide-react";
 import { useState, type ReactNode } from "react";
 
-const NAV = [
-  { to: "/", label: "Visão geral", icon: LayoutDashboard },
-  { to: "/estoque", label: "Estoque", icon: Boxes },
-  { to: "/entradas", label: "Entradas", icon: ArrowDownToLine },
-  { to: "/retiradas", label: "Retiradas", icon: ArrowUpFromLine },
-  { to: "/compras", label: "Compras", icon: ShoppingCart },
-  { to: "/inventario", label: "Inventário", icon: ClipboardCheck },
-  { to: "/relatorios", label: "Relatórios", icon: FileBarChart2 },
-  { to: "/configuracoes", label: "Configurações", icon: Settings },
+const NAV=[
+ {to:"/",label:"Resumo",icon:House},{to:"/estoque",label:"Estoque",icon:Boxes},{to:"/entradas",label:"Entrada de estoque",icon:ArrowDownToLine},{to:"/retiradas",label:"Retiradas",icon:ArrowUpFromLine},{to:"/compras",label:"Compras históricas",icon:ShoppingCart},{to:"/inventario",label:"Inventário",icon:ClipboardCheck},{to:"/relatorios",label:"Relatórios",icon:FileBarChart2},{to:"/configuracoes",label:"Configurações",icon:Settings},
 ] as const;
-
-function Brand() {
- return <div className="px-5 pt-6 pb-5">
-   <div className="flex items-center gap-3">
-    <div className="brand-mark"><PackageOpen className="h-5 w-5"/></div>
-    <div><div className="text-[15px] font-bold text-white">Fita Gomada</div><div className="text-[10px] uppercase tracking-[.24em] text-white/45">HUB • Operacional</div></div>
-   </div>
- </div>
-}
-function NavLinks({onNavigate}:{onNavigate?:()=>void}) {
- return <nav className="flex flex-col gap-1.5 px-3">{NAV.map(({to,label,icon:Icon})=>
-  <Link key={to} to={to} onClick={onNavigate} activeOptions={{exact:to==="/"}}
-   className="nav-item"
-   activeProps={{className:"nav-item nav-item-active"}}>
-   <Icon className="h-[17px] w-[17px]"/><span>{label}</span>
-  </Link>)}</nav>
-}
+function Brand(){return <div className="hub-brand"><div className="hub-wordmark">HUB</div><div className="hub-tagline">BELEZA QUE CONECTA</div><div className="hub-section">CONTROLE OPERACIONAL</div></div>}
+function NavLinks({onNavigate}:{onNavigate?:()=>void}){return <nav className="hub-nav">{NAV.map(({to,label,icon:Icon})=><Link key={to} to={to} onClick={onNavigate} activeOptions={{exact:to==="/"}} className="hub-nav-item" activeProps={{className:"hub-nav-item hub-nav-active"}}><Icon className="h-4 w-4"/><span>{label}</span></Link>)}</nav>}
 export function AppShell({children}:{children:ReactNode}) {
- const [open,setOpen]=useState(false);
- const pathname=useRouterState({select:s=>s.location.pathname});
- const current=NAV.find(n=>n.to==="/"?pathname==="/":pathname.startsWith(n.to));
- return <div className="min-h-screen">
-  <aside className="no-print fixed inset-y-0 left-0 z-30 hidden w-[232px] flex-col sidebar-panel lg:flex">
-   <Brand/><NavLinks/>
-   <div className="mx-4 mt-auto mb-5 rounded-xl border border-white/8 bg-white/[.04] px-3 py-3 text-[10px] leading-4 text-white/45">
-    Controle operacional HUB<br/><span className="text-white/70">1 caixa = 15 rolos</span>
-   </div>
-  </aside>
-  {open&&<div className="no-print fixed inset-0 z-40 lg:hidden"><div className="absolute inset-0 bg-black/40" onClick={()=>setOpen(false)}/><aside className="sidebar-panel absolute inset-y-0 left-0 flex w-72 flex-col shadow-2xl"><div className="flex items-center justify-between pr-3"><Brand/><button className="p-2 text-white" onClick={()=>setOpen(false)}><X className="h-5 w-5"/></button></div><NavLinks onNavigate={()=>setOpen(false)}/></aside></div>}
-  <div className="lg:pl-[232px]">
-   <header className="no-print sticky top-0 z-20 flex h-16 items-center border-b border-black/[.05] bg-white/80 px-5 backdrop-blur-xl lg:px-10">
-    <button className="mr-3 rounded-lg p-2 hover:bg-black/5 lg:hidden" onClick={()=>setOpen(true)}><Menu className="h-5 w-5"/></button>
-    <div><div className="text-[11px] font-medium uppercase tracking-[.16em] text-muted-foreground">Fita Gomada HUB</div><div className="text-sm font-semibold">{current?.label??"Página"}</div></div>
-    <div className="ml-auto hidden items-center gap-2 rounded-full border bg-white px-3 py-1.5 text-xs text-muted-foreground shadow-sm sm:flex"><span className="h-2 w-2 rounded-full bg-success"></span>Sistema operacional</div>
-   </header>
-   <main className="print-area mx-auto w-full max-w-[1380px] px-5 py-7 lg:px-10 lg:py-9">{children}</main>
-  </div>
+ const [open,setOpen]=useState(false); const pathname=useRouterState({select:s=>s.location.pathname}); const current=NAV.find(n=>n.to==="/"?pathname==="/":pathname.startsWith(n.to));
+ return <div className="min-h-screen bg-background">
+  <aside className="no-print hub-sidebar fixed inset-y-0 left-0 z-30 hidden w-[248px] flex-col lg:flex"><Brand/><NavLinks/><div className="hub-user"><div className="hub-avatar">FG</div><div><b>Fita Gomada HUB</b><small>Administrador</small></div></div><div className="hub-exit"><LogOut className="h-3.5 w-3.5"/> Sistema operacional</div></aside>
+  {open&&<div className="no-print fixed inset-0 z-40 lg:hidden"><div className="absolute inset-0 bg-black/30" onClick={()=>setOpen(false)}/><aside className="hub-sidebar absolute inset-y-0 left-0 flex w-72 flex-col"><div className="flex justify-between"><Brand/><button className="mr-3 mt-4 h-9 p-2" onClick={()=>setOpen(false)}><X className="h-5 w-5"/></button></div><NavLinks onNavigate={()=>setOpen(false)}/></aside></div>}
+  <div className="lg:pl-[248px]"><header className="no-print hub-header"><button className="mr-3 lg:hidden" onClick={()=>setOpen(true)}><Menu/></button><div><div className="hub-header-title">Controle de Fita Gomada</div><div className="hub-header-sub">Painel administrativo · estoque, consumo e custos em um só lugar.</div></div><div className="hub-motto">ORGANIZAÇÃO<br/>QUE IMPULSIONA<br/>RESULTADOS</div></header><main className="print-area mx-auto w-full max-w-[1400px] px-5 py-5 lg:px-6">{children}</main></div>
  </div>
 }
