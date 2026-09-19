@@ -204,3 +204,24 @@ h1 { font-size:30px!important; font-weight:750!important; }
 table thead { background:rgb(92 61 47 / .035); }
 table th { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted-foreground); }
 table td { padding-top:14px!important; padding-bottom:14px!important; }
+
+/* Etiquetas HUB identity */
+:root{--background:oklch(.975 .009 52);--primary:oklch(.62 .13 32);--border:oklch(.9 .014 50);--radius:.65rem}
+body{background:oklch(.975 .009 52)}
+.hub-sidebar{background:#fff;border-right:1px solid #eadbd5;color:#20252d}
+.hub-brand{height:116px;padding:15px 13px;border-bottom:1px solid #eee0da}
+.hub-wordmark{font-size:34px;line-height:34px;font-weight:800;letter-spacing:.08em;color:#b66052}
+.hub-tagline{margin-top:4px;font-size:7px;letter-spacing:.18em;color:#b66052}
+.hub-section{margin-top:25px;font-size:9px;color:#30343a}
+.hub-nav{display:flex;flex-direction:column;gap:4px;padding:8px 14px}
+.hub-nav-item{display:flex;align-items:center;gap:13px;border-radius:8px;padding:11px 12px;font-size:13px;color:#30343a;border-left:3px solid transparent}
+.hub-nav-item:hover{background:#f7efec;color:#ad584a}
+.hub-nav-active{background:#f0dfda;color:#ad584a;border-left-color:#c66f61}
+.hub-user{margin: auto 14px 0;border:1px solid #eadbd5;border-radius:12px;padding:10px;display:flex;gap:10px;align-items:center;background:#fffaf8;font-size:11px}
+.hub-user small{display:block;color:#777;margin-top:2px}.hub-avatar{width:38px;height:38px;border-radius:10px;background:#f0dfda;display:flex;align-items:center;justify-content:center;color:#9e5145;font-weight:700}
+.hub-exit{display:flex;gap:8px;align-items:center;margin:12px 20px 22px;font-size:11px;color:#666}
+.hub-header{height:138px;display:flex;align-items:flex-start;padding:27px 28px;border-bottom:1px solid #ecdcd6;background:linear-gradient(105deg,#fff 0%,#fff 55%,#f6e5df 100%)}
+.hub-header-title{font-size:30px;font-weight:750;letter-spacing:-.025em;color:#172131}.hub-header-sub{font-size:13px;color:#99594d;margin-top:3px}.hub-motto{margin-left:auto;text-align:left;font-size:9px;line-height:18px;letter-spacing:.32em;font-weight:700;color:#aa574a;padding:0 20px}
+.card-elevated{border:1px solid #eadbd5;border-radius:12px;background:#fff;box-shadow:0 3px 12px rgb(98 59 46 / .04);backdrop-filter:none}.card-elevated:hover{transform:none;box-shadow:0 5px 16px rgb(98 59 46 / .07)}
+h1{font-size:24px!important;color:#172131}table thead{background:#f2ebe8}table th{color:#6b5048}
+@media(max-width:1023px){.hub-header{height:auto;padding:20px}.hub-motto{display:none}}
