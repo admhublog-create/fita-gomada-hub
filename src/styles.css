@@ -165,3 +165,20 @@
     margin: 14mm;
   }
 }
+
+/* Production polish */
+body {
+  background:
+    radial-gradient(circle at 82% 0%, oklch(0.93 0.03 65 / 45%), transparent 30rem),
+    var(--color-background);
+}
+.card-elevated {
+  box-shadow: 0 10px 30px oklch(0.28 0.03 45 / 7%), 0 1px 3px oklch(0.28 0.03 45 / 7%);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card-elevated:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 34px oklch(0.28 0.03 45 / 10%), 0 2px 4px oklch(0.28 0.03 45 / 6%);
+}
+h1, h2, h3 { letter-spacing: -0.025em; }
+button, a { transition: all .16s ease; }
